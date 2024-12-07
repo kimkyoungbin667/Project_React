@@ -59,6 +59,8 @@ export default function Login() {
                     })
                     .catch((err) => {
                         alert("아이디 또는 비밀번호 재입력");
+                        idRef.current.value = '';
+                        pwRef.current.value = '';
                     });
             }, 2000); // 애니메이션 시간과 일치시킴
         } else {

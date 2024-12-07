@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './comp/account/login'
 import Join from './comp/account/join'
+import BoardList from './comp/board/boardList'
 
 function App() {
 
@@ -14,6 +15,9 @@ function App() {
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/join"} element={<Join />} />
+        <Route path={"/boardList"} element={<BoardList />} />
+
+
         </Routes>
       </BrowserRouter>
     </div>
@@ -23,11 +27,7 @@ function App() {
 function Home() {
   return (
     <div>
-      <h1>홈페이지</h1>
-      
-      <Link to="/login">로그인</Link>
-      <br />
-      
+      <Login></Login>
     </div>
   )
 }
