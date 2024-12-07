@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Join from './comp/account/join'
 import Login from './comp/account/login'
+import Join from './comp/account/join'
 
 function App() {
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,7 +27,7 @@ function Home() {
       
       <Link to="/login">로그인</Link>
       <br />
-      <Link to="/join">회원가입하기</Link>
+      
     </div>
   )
 }
