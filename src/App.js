@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './comp/account/login'
 import Join from './comp/account/join'
 import BoardList from './comp/board/boardList'
+import BoardDetail from './comp/board/boardDetail'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/join"} element={<Join />} />
         <Route path={"/boardList"} element={<BoardList />} />
+        <Route path={"/boardDetail"} element={<BoardDetail />} />
 
 
         </Routes>

@@ -15,13 +15,12 @@ export default function BoardList() {
 
         boardList(inputKeyword)
             .then(res => {
-                console.log(res.data);
                 setBoards(res.data);
             })
     }
 
     function detailBoard(idx) {
-        navigate('/detailBoard', { state: { boardId: idx } }); // 객체로 전달
+        navigate('/boardDetail', { state: { idx: idx } }); // 객체로 전달
     }
 
     function findKeyword() {
@@ -85,10 +84,8 @@ export default function BoardList() {
                     <tbody>
                         {boards.map(
                             (item, index) => {
-                                console.log(item);
                                 return (
-                                    //<tr key={index} onClick={e => { detailBoard(item.boardIdx - 1) }}>
-                                    <tr key={index}>
+                                    <tr key={index} onClick={e => { detailBoard(item.idx) }}>
                                         <td>{item.title}</td>
                                         <td>{item.good}</td>
                                         <td>{item.createBy}</td>

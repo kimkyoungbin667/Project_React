@@ -1,0 +1,59 @@
+/* AddBoard.css */
+.add-board-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.add-board-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add-board-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-board-input, 
+.add-board-textarea, 
+.add-board-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.add-board-input:focus, 
+.add-board-textarea:focus {
+    outline: none;
+    border: 1px solid #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.add-board-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.add-board-button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-board-button:hover {
+    background-color: #45a049;
+}

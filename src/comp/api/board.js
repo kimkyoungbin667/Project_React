@@ -17,7 +17,16 @@ export const boardList = (param) => {
  * @returns 
  */
 export const detailBoard = (param) => {
-    return api.get('/board/find', { 
+    return api.get('/board/detailBoard', { 
         params: param
     });
 };
+
+/**
+ * 게시글 좋아요하기
+ * @param {*} obj 
+ * @returns 
+ */
+export const goodBoard = (obj) => {
+    return api.post('/board/good', JSON.stringify(obj))
+}
