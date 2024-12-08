@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import '../css/AddBoard.css'; // 스타일 파일 import
+import '../css/AddBoard.css';
 import { addBoard } from '../api/board';
 
 export default function AddBoard() {
@@ -8,15 +8,17 @@ export default function AddBoard() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+    const nowUserIdx = localStorage.getItem("userIdx");
 
     function writeBoard() {
         const obj = new Object();
         obj.title = title;
         obj.content = content;
-        obj.memberId = "hong"
+        obj.createBy = nowUserIdx;
 
         addBoard(obj)
         .then(res => {
+            console.log(res);
             navigate("/listBoard")
         })
     }

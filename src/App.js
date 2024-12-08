@@ -5,6 +5,7 @@ import Login from './comp/account/login'
 import Join from './comp/account/join'
 import BoardList from './comp/board/boardList'
 import BoardDetail from './comp/board/boardDetail'
+import AddBoard from './comp/board/addBoard'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
         <Route path={"/join"} element={<Join />} />
         <Route path={"/boardList"} element={<BoardList />} />
         <Route path={"/boardDetail"} element={<BoardDetail />} />
-
+        <Route path={"/addBoard"} element={<AddBoard />} />
 
         </Routes>
       </BrowserRouter>

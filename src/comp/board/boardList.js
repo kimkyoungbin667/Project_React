@@ -20,7 +20,7 @@ export default function BoardList() {
     }
 
     function detailBoard(idx) {
-        navigate('/boardDetail', { state: { idx: idx } }); // 객체로 전달
+        navigate('/boardDetail', { state: { board_idx: idx } }); // 객체로 전달
     }
 
     function findKeyword() {
@@ -40,7 +40,7 @@ export default function BoardList() {
     }, [])
 
     useEffect(() => {
-        findKeyword();
+        //findKeyword();
     }, [keyword, nowOption]);
 
     return (
@@ -85,12 +85,11 @@ export default function BoardList() {
                         {boards.map(
                             (item, index) => {
                                 return (
-                                    <tr key={index} onClick={e => { detailBoard(item.idx) }}>
+                                    <tr key={index} onClick={e => { detailBoard(item.boardIdx) }}>
                                         <td>{item.title}</td>
                                         <td>{item.good}</td>
-                                        <td>{item.createBy}</td>
+                                        <td>{item.userName}</td>
                                         <td>{item.created}</td>
-                                        
                                     </tr>
                                 )
 

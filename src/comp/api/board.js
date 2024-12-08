@@ -12,6 +12,15 @@ export const boardList = (param) => {
 }
 
 /**
+ * 게시글 작성하기
+ * @param {} param 
+ * @returns 
+ */
+export const addBoard = (obj) => {
+    return api.post('/board/writeBoard', JSON.stringify(obj))
+}
+
+/**
  * 게시글 상세보기
  * @param {} obj 
  * @returns 

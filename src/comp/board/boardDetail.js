@@ -8,29 +8,28 @@ export default function DetailBoard() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [writer, setWriter] = useState('');
+    const [writerId, setWriterId] = useState('');
     const [like, setLike] = useState();
+
+    const nowUserId = localStorage.getItem("userId");
+
     const location = useLocation();
     const navigate = useNavigate();
     const { state } = location; // location에서 state 가져오기
 
-    const nowMemberId = localStorage.getItem('userId');
-
     function startDetail() {
 
-        console.log(nowMemberId);
-        const obj = { idx: state.idx}; // 객체 생성
+        const obj = { board_idx: state.board_idx}; // 객체 생성
         detailBoard(obj)
             .then(res => {
                 if (res.data.code == '200') {
                     setTitle(res.data.data.title);
                     setContent(res.data.data.content);
-                    setWriter(res.data.data.createBy);
+                    setWriterId(res.data.data.userId);
                     setLike(res.data.data.boardGood);
                 }
             })
     }
-
 
     function goReviseBoard(boardId) {
         navigate('/reviseBoard', { state: { boardId: boardId } }); // 객체로 전달
@@ -57,7 +56,7 @@ export default function DetailBoard() {
     return (
         <div className="detail-container">
             <h1 className="detail-title">게시글 상세보기</h1>
-            <p className="detail-text">작성자 : {writer}</p>
+            <p className="detail-text">작성자 : </p>
             <div className="detail-content">
                 <h2 className="detail-heading">{title}</h2>
                 <p className="detail-text">{content}</p>
@@ -68,7 +67,7 @@ export default function DetailBoard() {
                     }
                 }>👍 추천 </a>{like}
                 {/* 조건부 렌더링 */}
-                {writer === nowMemberId && (
+                {nowUserId === writerId && (
                     <div>
                         <button className="detail-button" >
                             수정
