@@ -87,7 +87,7 @@ export default function BoardList() {
                                 return (
                                     <tr key={index} onClick={e => { detailBoard(item.boardIdx) }}>
                                         <td>{item.title}</td>
-                                        <td>{item.good}</td>
+                                        <td>❤️ {item.good}</td>
                                         <td>{item.userName}</td>
                                         <td>{item.created}</td>
                                     </tr>

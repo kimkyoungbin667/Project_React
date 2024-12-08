@@ -8,18 +8,18 @@ export default function AddBoard() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
-    const nowUserIdx = localStorage.getItem("userIdx");
 
     function writeBoard() {
         const obj = new Object();
         obj.title = title;
         obj.content = content;
-        obj.createBy = nowUserIdx;
+        obj.userIdx = localStorage.getItem("userIdx");;
 
+        console.log(obj);
         addBoard(obj)
         .then(res => {
             console.log(res);
-            navigate("/listBoard")
+            navigate("/boardList")
         })
     }
 

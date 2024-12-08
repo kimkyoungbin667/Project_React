@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { detailBoard, goodBoard } from '../api/board';
+import { detailBoard, goodBoard, deleteBoard } from '../api/board';
 import { useLocation } from "react-router";
 import '../css/DetailBoard.css';
 
@@ -9,6 +9,7 @@ export default function DetailBoard() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [writerId, setWriterId] = useState('');
+    const [writerName, setWriterName] = useState('');
     const [like, setLike] = useState();
 
     const nowUserId = localStorage.getItem("userId");
@@ -22,10 +23,12 @@ export default function DetailBoard() {
         const obj = { board_idx: state.board_idx}; // 객체 생성
         detailBoard(obj)
             .then(res => {
+                console.log(res.data);
                 if (res.data.code == '200') {
                     setTitle(res.data.data.title);
                     setContent(res.data.data.content);
                     setWriterId(res.data.data.userId);
+                    setWriterName(res.data.data.userName);
                     setLike(res.data.data.boardGood);
                 }
             })
@@ -49,6 +52,24 @@ export default function DetailBoard() {
         goodBoard(obj);
     }
 
+    function deleteAction(board_idx) {
+        const obj = new Object();
+        obj.board_idx = board_idx;
+
+        console.log(obj);
+        
+        deleteBoard(obj)
+            .then(res => {
+                if(res.data.code == '200') {
+                    console.log('삭제 성공!');
+                    navigate("/boardList");
+                } else {
+                    console.log('삭제 실패');
+                }
+
+            })
+    }
+
     useEffect(() => {
         startDetail();
     }, [])
@@ -56,7 +77,7 @@ export default function DetailBoard() {
     return (
         <div className="detail-container">
             <h1 className="detail-title">게시글 상세보기</h1>
-            <p className="detail-text">작성자 : </p>
+            <p className="detail-text">작성자 : {writerName}</p>
             <div className="detail-content">
                 <h2 className="detail-heading">{title}</h2>
                 <p className="detail-text">{content}</p>
@@ -72,7 +93,7 @@ export default function DetailBoard() {
                         <button className="detail-button" >
                             수정
                         </button>
-                        <button className="detail-button" >
+                        <button className="detail-button" onClick={()=>deleteAction(state.board_idx)}>
                             삭제
                         </button>
                     </div>

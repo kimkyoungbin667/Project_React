@@ -60,7 +60,8 @@ export default function Login() {
                 login(obj)
                     .then((res) => {
                         if (res.data.code == '200') {
-                            localStorage.setItem("userIdx", res.data.data.idx);
+                            console.log(res.data);
+                            localStorage.setItem("userIdx", res.data.data.userIdx);
                             localStorage.setItem("userId", res.data.data.userId);
                             localStorage.setItem("userName", res.data.data.userName);
                             alert(res.data.data.userName+" 님 환영합니다");

@@ -39,3 +39,13 @@ export const detailBoard = (param) => {
 export const goodBoard = (obj) => {
     return api.post('/board/good', JSON.stringify(obj))
 }
+
+/**
+ * 게시글 삭제하기
+ * @param {*} obj 
+ * @returns 
+ */
+export const deleteBoard = (obj) => {
+    console.log('deleteBoard 실행');
+    return api.post('/board/deleteBoard', JSON.stringify(obj))
+}
