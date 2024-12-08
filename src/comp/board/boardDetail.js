@@ -34,9 +34,6 @@ export default function DetailBoard() {
             })
     }
 
-    function goReviseBoard(boardId) {
-        navigate('/reviseBoard', { state: { boardId: boardId } }); // 객체로 전달
-    }
 
     function goodUp(boardId) {
         setLike(like+1);
@@ -70,6 +67,9 @@ export default function DetailBoard() {
             })
     }
 
+    function reviseAction(board_idx) {
+        navigate('/reviseBoard', { state: { board_idx: board_idx } }); // 객체로 전달
+    }
     useEffect(() => {
         startDetail();
     }, [])
@@ -90,7 +90,7 @@ export default function DetailBoard() {
                 {/* 조건부 렌더링 */}
                 {nowUserId === writerId && (
                     <div>
-                        <button className="detail-button" >
+                        <button className="detail-button" onClick={()=>reviseAction(state.board_idx)}>
                             수정
                         </button>
                         <button className="detail-button" onClick={()=>deleteAction(state.board_idx)}>

@@ -7,12 +7,10 @@ export default function Login() {
     const idRef = useRef("");
     const pwRef = useRef("");
 
-    const [focused, setFocused] = useState(false);
     const [completed, setCompleted] = useState(false);
     const [animationClass, setAnimationClass] = useState("");
     const navigate = useNavigate();
 
-    // 페이지 접속 시 localStorage 초기화
     useEffect(() => {
         localStorage.removeItem("userId");
         localStorage.removeItem("userIdx");
@@ -20,7 +18,6 @@ export default function Login() {
     }, []);
 
     const handleFocus = () => {
-        setFocused(true);
         setAnimationClass(completed ? "face-up-right" : "face-up-left");
     };
 
@@ -43,15 +40,14 @@ export default function Login() {
 
     const loginAction = (e) => {
         e.preventDefault();
-        setAnimationClass(""); // 애니메이션 초기화
+        setAnimationClass("");
 
         if (completed) {
-            setAnimationClass("form-complete"); // 성공 애니메이션 클래스 추가
+            setAnimationClass("form-complete");
             setTimeout(() => {
-                setAnimationClass(""); // 애니메이션 클래스 초기화
+                setAnimationClass("");
                 setCompleted(false);
 
-                // 애니메이션이 완료된 후 서버로 데이터 전송
                 const obj = {
                     userId: idRef.current.value,
                     userPw: pwRef.current.value,
@@ -59,30 +55,28 @@ export default function Login() {
 
                 login(obj)
                     .then((res) => {
-                        if (res.data.code == '200') {
-                            console.log(res.data);
+                        if (res.data.code === '200') {
                             localStorage.setItem("userIdx", res.data.data.userIdx);
                             localStorage.setItem("userId", res.data.data.userId);
                             localStorage.setItem("userName", res.data.data.userName);
-                            alert(res.data.data.userName+" 님 환영합니다");
+                            alert(`${res.data.data.userName} 님 환영합니다`);
                             navigate("/boardList");
                         } else {
                             alert("아이디 또는 비밀번호를 재입력해주세요.");
                             idRef.current.value = '';
                             pwRef.current.value = '';
                         }
-
                     })
-                    .catch((err) => {
+                    .catch(() => {
                         alert("아이디 또는 비밀번호를 재입력해주세요.");
                         idRef.current.value = '';
                         pwRef.current.value = '';
                     });
-            }, 2000); // 애니메이션 시간과 일치시킴
+            }, 2000);
         } else {
-            setAnimationClass("form-error"); // 실패 애니메이션 클래스 추가
+            setAnimationClass("form-error");
             setTimeout(() => {
-                setAnimationClass(""); // 애니메이션 클래스 초기화
+                setAnimationClass("");
             }, 2000);
         }
     };
