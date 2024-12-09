@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { boardList } from '../api/board';
-import '../css/BoardList.css'; 
+import '../css/BoardList.css';
 
 
 export default function BoardList() {
@@ -20,6 +20,7 @@ export default function BoardList() {
                 setBoards(res.data);
             })
     }
+
 
     function detailBoard(idx) {
         navigate('/boardDetail', { state: { board_idx: idx } }); // 객체로 전달
@@ -46,7 +47,7 @@ export default function BoardList() {
     useEffect(() => {
         findKeyword();
     }, [keyword, nowOption]);
- 
+
     return (
         <div>
             <h1>게시글 목록 페이지</h1>
@@ -75,6 +76,7 @@ export default function BoardList() {
                     e => setKeyword(e.target.value)
                 } />
 
+
             <div className="table-container">
                 <table className="styled-table">
                     <thead>
@@ -102,6 +104,8 @@ export default function BoardList() {
                     </tbody>
                 </table>
             </div>
+
+
 
             <input type='button' value='글쓰기' onClick={() => navigate("/addBoard")} />
         </div >

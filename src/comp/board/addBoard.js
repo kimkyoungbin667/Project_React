@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom"; 
 import '../css/AddBoard.css';
 import { addBoard } from '../api/board';
@@ -8,6 +8,13 @@ export default function AddBoard() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+    const nowUserId = localStorage.getItem("userId");
+
+    useEffect(() => {
+        if(nowUserId == null) {
+            navigate("/login");
+        }
+    }, [])
 
     function writeBoard() {
         const obj = new Object();
