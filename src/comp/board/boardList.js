@@ -13,8 +13,10 @@ export default function BoardList() {
 
     function startItemList(inputKeyword) {
 
+        console.log(inputKeyword);
         boardList(inputKeyword)
             .then(res => {
+                console.log(res.data);
                 setBoards(res.data);
             })
     }
@@ -28,8 +30,10 @@ export default function BoardList() {
 
         if (nowOption === "제목") {
             param.keyword = keyword;
+            param.setting = "title";
         } else if (nowOption === "작성자") {
-            param.created = keyword;
+            param.keyword = keyword;
+            param.setting = "writer";
         }
 
         startItemList(param); // 게시글 검색
@@ -40,9 +44,9 @@ export default function BoardList() {
     }, [])
 
     useEffect(() => {
-        //findKeyword();
+        findKeyword();
     }, [keyword, nowOption]);
-
+ 
     return (
         <div>
             <h1>게시글 목록 페이지</h1>
