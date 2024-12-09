@@ -37,7 +37,7 @@ export const detailBoard = (param) => {
  * @returns 
  */
 export const goodBoard = (obj) => {
-    return api.post('/board/good', JSON.stringify(obj))
+    return api.post('/board/goodBoard', JSON.stringify(obj))
 }
 
 /**

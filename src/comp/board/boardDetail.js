@@ -29,11 +29,10 @@ export default function DetailBoard() {
                     setContent(res.data.data.content);
                     setWriterId(res.data.data.userId);
                     setWriterName(res.data.data.userName);
-                    setLike(res.data.data.boardGood);
+                    setLike(res.data.data.good);
                 }
             })
     }
-
 
     function goodUp(boardId) {
         setLike(like+1);
@@ -43,6 +42,7 @@ export default function DetailBoard() {
 
     function goodUpAction(boardId) {
 
+        console.log(boardId);
         const obj = new Object();
         obj.boardId = boardId;
 
@@ -84,7 +84,7 @@ export default function DetailBoard() {
                 <a onClick={
                     e => {
                         e.preventDefault();
-                        goodUp(state.boardId+1);
+                        goodUp(state.board_idx);
                     }
                 }>👍 추천 </a>{like}
                 {/* 조건부 렌더링 */}
